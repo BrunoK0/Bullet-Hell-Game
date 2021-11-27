@@ -4,13 +4,14 @@ var bullet_scene = preload("res://bullets/basic/basicBullet.tscn")
 onready var shoot_timer = $ShootTimer
 onready var rotator = $Rotator
 
-export var rotation_speed = 0
+export var rotation_speed = 100
 export var shoot_timer_wait_time = 0.2
-export var spawn_point_number = 5
-export var arch_angle = 180
+export var spawn_point_number = 4
+export var arch_angle = 45
 export var angle_offset = 90
 export var radius = 1
-export (bool) var follow_player = false
+export (bool) var follow_player = true
+export var follow_player_speed = 1
 
 func _ready():	
 	create_spawners()
@@ -55,8 +56,11 @@ func create_spawners():
 	
 
 func _process(delta):
-	var new_rotation = rotator.rotation_degrees + rotation_speed * delta
-	rotator.rotation_degrees = fmod(new_rotation, 360)
+	if(follow_player):
+		rotator.look_at(get_tree().get_root().get_node("Main/Player").global_position)
+	else:
+		var new_rotation = rotator.rotation_degrees + rotation_speed * delta
+		rotator.rotation_degrees = fmod(new_rotation, 360)
 	
 
 func _on_ShootTimer_timeout() -> void:
