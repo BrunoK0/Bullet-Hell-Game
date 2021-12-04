@@ -4,14 +4,21 @@ var bullet_scene = preload("res://bullets/basic/basicBullet.tscn")
 onready var shoot_timer = $ShootTimer
 onready var rotator = $Rotator
 
-export var rotation_speed = 100
-export var shoot_timer_wait_time = 0.2
-export var spawn_point_number = 4
-export var arch_angle = 45
+export var rotation_speed = 90
+export var shoot_timer_wait_time = 0.25
+export var spawn_point_number = 5
+export var arch_angle = 360
 export var angle_offset = 90
 export var radius = 1
-export (bool) var follow_player = true
+export (bool) var follow_player = false
 export var follow_player_speed = 1
+export var bullet_speed = 100
+
+export (bool) var stack = true
+export var bullet_speed_min = 100
+export var bullet_speed_max = 300
+export var stack_bullet_number = 3
+
 
 func _ready():	
 	create_spawners()
@@ -64,8 +71,20 @@ func _process(delta):
 	
 
 func _on_ShootTimer_timeout() -> void:
-	for s in rotator.get_children():
-		var bullet = bullet_scene.instance()
-		get_tree().root.add_child(bullet)
-		bullet.position = s.global_position
-		bullet.rotation = s.global_rotation	
+	if(stack):
+		var speed_interval = (bullet_speed_max - bullet_speed_min) / stack_bullet_number
+		
+		for s in rotator.get_children():
+			for j in stack_bullet_number:
+				var bullet = bullet_scene.instance()
+				get_tree().root.add_child(bullet)
+				bullet.position = s.global_position
+				bullet.rotation = s.global_rotation
+				bullet.speed = bullet_speed_min + j * speed_interval
+	else:
+		for s in rotator.get_children():
+			var bullet = bullet_scene.instance()
+			get_tree().root.add_child(bullet)
+			bullet.position = s.global_position
+			bullet.rotation = s.global_rotation
+			bullet.speed = bullet_speed

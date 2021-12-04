@@ -1,16 +1,29 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://bullets/basic/basicBullet.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+export var speed = 100
+
+
+func _process(delta):
+	position += transform.x * speed * delta
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+"
+
+[sub_resource type="CircleShape2D" id=2]
 radius = 7.13979
 
-[node name="BasicBullet" type="RigidBody2D"]
+[node name="PlayerBullet" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource( 1 )
+script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
@@ -23,10 +36,10 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
