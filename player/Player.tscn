@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
+[ext_resource path="res://bullet generator/generator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/PlayerGenerator.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19.8082, 19.741 )
@@ -31,5 +33,13 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="GeneratorPlayer" parent="." instance=ExtResource( 2 )]
+visible = false
+script = ExtResource( 3 )
+
+[node name="FireDelayTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
