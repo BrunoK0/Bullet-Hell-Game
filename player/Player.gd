@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed = 300
+export (int) var speed = 350
 export (int) var slowSpeed = 150
 
 onready var fire_delay_timer = $FireDelayTimer
