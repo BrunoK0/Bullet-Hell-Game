@@ -16,3 +16,4 @@ func _process(delta):
 func _on_Hurtbox_body_entered(body):
 	health = health - 1
 	print(health)
+

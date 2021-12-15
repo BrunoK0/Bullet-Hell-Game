@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var speed = 350
-export (int) var slowSpeed = 150
+export (int) var slowSpeed = 200
 
 onready var fire_delay_timer = $FireDelayTimer
 onready var generator = $GeneratorPlayer
