@@ -5,14 +5,14 @@ onready var shoot_timer = $ShootTimer
 onready var rotator = $Rotator
 
 export var rotation_speed = 90
-export var shoot_timer_wait_time = 0.125
-export var spawn_point_number = 3
+export var shoot_timer_wait_time = 0.90
+export var spawn_point_number = 1
 export var arch_angle = 45
 export var angle_offset = 90
 export var radius = 1
 export (bool) var follow_player = true
 export var follow_player_speed = 1
-export var bullet_speed = 300
+export var bullet_speed = 200
 
 export (bool) var stack = false
 export var bullet_speed_min = 100

@@ -9,3 +9,15 @@ script = ExtResource( 2 )
 
 [node name="Generator" parent="." index="2"]
 script = ExtResource( 3 )
+
+[node name="MovemenDelayTimer" type="Timer" parent="." index="4"]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="5"]
+
+[node name="MovementTween" type="Tween" parent="." index="6"]
+
+[connection signal="timeout" from="MovemenDelayTimer" to="." method="_on_MovemenDelayTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
