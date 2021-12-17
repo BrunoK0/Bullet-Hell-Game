@@ -1,16 +1,22 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	startWave1()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func startWave1():
+	$Wave1.start()
+	
+func startWave2():
+	$Wave2.start()
+
+func startWave3():
+	print("start wave 3")
+	
+func _on_Wave1_wave1_over():
+	startWave2()
+	
+func _on_Wave2_wave2_over():
+	startWave3()

@@ -23,7 +23,6 @@ script = ExtResource( 2 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="PathLeft"]
 wait_time = 0.2
-autostart = true
 
 [node name="PathRight" type="Path2D" parent="."]
 position = Vector2( 836, 61 )
@@ -33,7 +32,6 @@ script = ExtResource( 3 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="PathRight"]
 wait_time = 0.2
-autostart = true
 
 [node name="WaveDurationTimer" type="Timer" parent="."]
 one_shot = true
