@@ -1,23 +1,23 @@
 extends Node2D
 
-var bullet_scene = preload("res://bullets/basicB/basicBulletB.tscn")
+var bullet_scene = preload("res://bullets/basicC/BasicBulletC.tscn")
 onready var shoot_timer = $ShootTimer
 onready var rotator = $Rotator
 
-export var rotation_speed = 0
-export var shoot_timer_wait_time = 3
-export var spawn_point_number = 9
-export var arch_angle = 70
-export var angle_offset = 90
-export var radius = 1
+export var rotation_speed = 90
+export var shoot_timer_wait_time = 0.5
+export var spawn_point_number = 6
+export var arch_angle = 360
+export var angle_offset = 0
+export var radius = 0.0001
 export (bool) var follow_player = false
 export var follow_player_speed = 1
-export var bullet_speed = 50
+export var bullet_speed = 90
 
-export (bool) var stack = true
+export (bool) var stack = false
 export var bullet_speed_min = 100
-export var bullet_speed_max = 175
-export var stack_bullet_number = 2
+export var bullet_speed_max = 300
+export var stack_bullet_number = 3
 
 
 func _ready():	

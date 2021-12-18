@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemies/common/base/enemyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemies/bosses/boss1/Boss1.gd" type="Script" id=2]
+[ext_resource path="res://enemies/bosses/boss1/PatternController.gd" type="Script" id=3]
+[ext_resource path="res://enemies/bosses/boss1/attackPattern1/attackPattern1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemies/bosses/boss1/attackPattern2/AttackPattern2.tscn" type="PackedScene" id=5]
+
+[node name="Boss1" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="ColorRect" parent="." index="0"]
+color = Color( 1, 0, 0.188235, 1 )
+
+[node name="Hurtbox" parent="." index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
+
+[node name="MovementTween" type="Tween" parent="." index="4"]
+
+[node name="PatternController" type="Node2D" parent="." index="5"]
+script = ExtResource( 3 )
+
+[node name="AttackPattern1" parent="PatternController" index="0" instance=ExtResource( 4 )]
+
+[node name="AttackPattern2" parent="PatternController" index="1" instance=ExtResource( 5 )]
+
+[node name="MovementDelayTimer" type="Timer" parent="." index="6"]
+wait_time = 0.001
+one_shot = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="7"]
+
+[connection signal="boss_defeat" from="PatternController" to="." method="_on_PatternController_boss_defeat"]
+[connection signal="pattern1_over" from="PatternController/AttackPattern1" to="PatternController" method="_on_AttackPattern1_pattern1_over"]
+[connection signal="pattern2_over" from="PatternController/AttackPattern2" to="PatternController" method="_on_AttackPattern2_pattern2_over"]
+[connection signal="timeout" from="MovementDelayTimer" to="." method="_on_MovementDelayTimer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

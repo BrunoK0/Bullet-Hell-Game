@@ -1,10 +1,10 @@
 extends Node2D
 
-var bullet_scene = preload("res://bullets/basic/basicBullet.tscn")
+var bullet_scene = preload("res://bullets/basicC/BasicBulletC.tscn")
 onready var shoot_timer = $ShootTimer
 onready var rotator = $Rotator
 
-export var rotation_speed = 90
+export var rotation_speed = 0
 export var shoot_timer_wait_time = 0.25
 export var spawn_point_number = 5
 export var arch_angle = 360
@@ -40,8 +40,6 @@ func create_spawners():
 		spawn_point.rotation = pos.angle()
 		rotator.add_child(spawn_point)
 		print_debug('spawn point created')
-		shoot_timer.wait_time = shoot_timer_wait_time
-		shoot_timer.start()
 		return
 	
 	var step
@@ -58,8 +56,7 @@ func create_spawners():
 		rotator.add_child(spawn_point)
 		print_debug('spawn point created')
 		
-	shoot_timer.wait_time = shoot_timer_wait_time
-	shoot_timer.start()
+
 	
 
 func _process(delta):
@@ -88,3 +85,9 @@ func _on_ShootTimer_timeout() -> void:
 			bullet.position = s.global_position
 			bullet.rotation = s.global_rotation
 			bullet.speed = bullet_speed
+
+
+func _on_AttackPattern2_start_bullet_pattern():
+	shoot_timer.wait_time = shoot_timer_wait_time
+	shoot_timer.start()
+	rotation_speed = 90

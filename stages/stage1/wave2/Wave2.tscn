@@ -22,12 +22,8 @@ script = ExtResource( 2 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="Path"]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path"]
-position = Vector2( 512.124, 101.551 )
-rotation = -2.9555
-offset = 175.252
-
 [node name="WaveDurationTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Path/EnemySpawnTimer" to="Path" method="_on_EnemySpawnTimer_timeout"]
 [connection signal="timeout" from="WaveDurationTimer" to="." method="_on_WaveDurationTimer_timeout"]

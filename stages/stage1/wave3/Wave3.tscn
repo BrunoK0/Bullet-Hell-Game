@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://stages/stage1/wave3/Wave3.gd" type="Script" id=1]
+[ext_resource path="res://stages/stage1/wave3/Path.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 512.441, -87.5877, 0, 0, 0, 0, 512.464, 785.887 )
+}
+
+[node name="Wave3" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 512.453 ]
+}
+
+[node name="PathLeft" type="Path2D" parent="."]
+position = Vector2( -190, 0 )
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="EnemySpawnTimer" type="Timer" parent="PathLeft"]
+wait_time = 0.001
+one_shot = true
+
+[node name="PathRight" type="Path2D" parent="."]
+position = Vector2( 190, 0 )
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="EnemySpawnTimer" type="Timer" parent="PathRight"]
+wait_time = 0.001
+one_shot = true
+
+[node name="WaveDurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="PathLeft/EnemySpawnTimer" to="PathLeft" method="_on_EnemySpawnTimer_timeout"]
+[connection signal="timeout" from="PathRight/EnemySpawnTimer" to="PathRight" method="_on_EnemySpawnTimer_timeout"]
+[connection signal="timeout" from="WaveDurationTimer" to="." method="_on_WaveDurationTimer_timeout"]

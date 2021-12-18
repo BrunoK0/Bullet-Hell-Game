@@ -1,17 +1,21 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.position = $PlayerStartPos.position
-	#$Generator.position = $GeneratorPos.position
+	#$Player.hide()
+	
+	pass
+	
+"""
+func startGame():
+	$Player.position = $PlayerStartPos.position
+	$Player.show()
+"""
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func _on_BossBattle_bossDefeated():
+	$FinalMessage.text = "Congratulations!\nYou got hit " + str($Player.player_hit) + " times"
+	if($Player.player_hit == 0):
+		$FinalMessage.text += "\nPerfect!!"

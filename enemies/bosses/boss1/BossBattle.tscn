@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://enemies/bosses/boss1/BossBattle.gd" type="Script" id=1]
+
+[node name="BossBattle" type="Node"]
+script = ExtResource( 1 )

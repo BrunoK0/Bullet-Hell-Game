@@ -3,7 +3,7 @@ onready var wave_duration_timer = $WaveDurationTimer
 
 signal wave2_over
 
-var duration_time = 21
+var duration_time = 16
 var enemy_spawn_delay = 1
 
 func start():

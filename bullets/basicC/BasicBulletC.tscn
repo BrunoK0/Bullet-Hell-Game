@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://bullets/basic/basicBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://bullets/basicC/BasicBulletC.gd" type="Script" id=2]
+
+[node name="BasicBulletC" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="BulletColor" parent="." index="0"]
+color = Color( 0.517647, 0.792157, 0.972549, 1 )
+
+[node name="Area2D" parent="." index="2"]
+visible = false
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
+
+[node name="VisibilityNotifier2D" parent="." index="4"]
+visible = false

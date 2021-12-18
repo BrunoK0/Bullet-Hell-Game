@@ -5,19 +5,19 @@ onready var shoot_timer = $ShootTimer
 onready var rotator = $Rotator
 
 export var rotation_speed = 0
-export var shoot_timer_wait_time = 3
-export var spawn_point_number = 9
-export var arch_angle = 70
+export var shoot_timer_wait_time = 1.5
+export var spawn_point_number = 6
+export var arch_angle = 45
 export var angle_offset = 90
 export var radius = 1
 export (bool) var follow_player = false
 export var follow_player_speed = 1
-export var bullet_speed = 50
+export var bullet_speed = 100
 
-export (bool) var stack = true
+export (bool) var stack = false
 export var bullet_speed_min = 100
-export var bullet_speed_max = 175
-export var stack_bullet_number = 2
+export var bullet_speed_max = 300
+export var stack_bullet_number = 3
 
 
 func _ready():	
@@ -40,8 +40,6 @@ func create_spawners():
 		spawn_point.rotation = pos.angle()
 		rotator.add_child(spawn_point)
 		print_debug('spawn point created')
-		shoot_timer.wait_time = shoot_timer_wait_time
-		shoot_timer.start()
 		return
 	
 	var step
@@ -58,8 +56,6 @@ func create_spawners():
 		rotator.add_child(spawn_point)
 		print_debug('spawn point created')
 		
-	shoot_timer.wait_time = shoot_timer_wait_time
-	shoot_timer.start()
 	
 
 func _process(delta):
@@ -88,3 +84,8 @@ func _on_ShootTimer_timeout() -> void:
 			bullet.position = s.global_position
 			bullet.rotation = s.global_rotation
 			bullet.speed = bullet_speed
+
+
+func _on_attackPattern1_start_bullet_pattern():
+	shoot_timer.wait_time = shoot_timer_wait_time
+	shoot_timer.start()
